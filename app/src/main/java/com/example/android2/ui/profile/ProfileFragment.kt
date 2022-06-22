@@ -1,25 +1,14 @@
-package com.example.android2.ui.Profile
+package com.example.android2.ui.profile
 
-import android.app.Activity
-import android.content.Context
-import android.content.Intent
-import android.content.pm.PackageManager
-import android.graphics.Bitmap
-import android.graphics.ImageDecoder
 import android.net.Uri
-import android.os.Build
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.provider.MediaStore
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.example.android2.databinding.ProfileFragmentBinding
-import java.lang.Exception
 
 class ProfileFragment : Fragment() {
 
@@ -42,7 +31,7 @@ class ProfileFragment : Fragment() {
 
     private val getContent =
         registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
-            Glide.with(binding.imgProfile).load(uri).centerCrop().into(binding.imgProfile)
+            Glide.with(binding.imgProfile).load(uri).circleCrop().into(binding.imgProfile)
         }
 
 }

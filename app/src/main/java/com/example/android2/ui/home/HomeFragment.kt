@@ -13,21 +13,38 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.android2.R
 import com.example.android2.databinding.FragmentHomeBinding
+import com.example.android2.models.News
+import com.example.android2.ui.news.NewsAdapter
+import java.text.FieldPosition
+import java.text.SimpleDateFormat
+import java.util.*
 
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
+    private lateinit var adapter: NewsAdapter
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        adapter = NewsAdapter(this::onClick)
 
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
+    }
+
+    private fun onClick(news: News, position: Int) {
+        val bundle = Bundle()
+        bundle.putSerializable("news", news)
+        bundle.putInt("pos", position)
+        findNavController().navigate(R.id.newsFragment, bundle)
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentHomeBinding.inflate(inflater, container,false)
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
 
     }
@@ -37,12 +54,19 @@ class HomeFragment : Fragment() {
         binding.FloatBtn.setOnClickListener {
             findNavController().navigate(R.id.newsFragment)
         }
-        parentFragmentManager.setFragmentResultListener("news",viewLifecycleOwner){requestKey,bundle ->
-            val text = bundle.getString("text")
-            Log.e("home","text $text")
-            Toast.makeText(requireContext(),text,Toast.LENGTH_SHORT).show()
+        parentFragmentManager.setFragmentResultListener(
+            "news",
+            viewLifecycleOwner
+        ) { requestKey, bundle ->
+
+            val news = bundle.getSerializable("news") as News
+            adapter.addItem(news)
+            Log.e("home", "text ${news.title}${news.createdAt}")
+            Toast.makeText(requireContext(), news.title, Toast.LENGTH_SHORT).show()
 
         }
+
+        binding.recyclerView.adapter = adapter
     }
 
     override fun onDestroyView() {

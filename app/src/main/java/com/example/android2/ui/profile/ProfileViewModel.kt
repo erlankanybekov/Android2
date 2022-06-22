@@ -1,4 +1,4 @@
-package com.example.android2.ui.Profile
+package com.example.android2.ui.profile
 
 import androidx.lifecycle.ViewModel
 
