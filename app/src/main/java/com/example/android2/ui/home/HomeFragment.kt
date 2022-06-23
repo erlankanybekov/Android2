@@ -29,13 +29,14 @@ class HomeFragment : Fragment() {
         adapter = NewsAdapter(this::onClick)
 
 
+
     }
 
     private fun onClick(news: News, position: Int) {
         val bundle = Bundle()
-        bundle.putSerializable("news", news)
-        bundle.putInt("pos", position)
+
         findNavController().navigate(R.id.newsFragment, bundle)
+
     }
 
 
@@ -49,6 +50,7 @@ class HomeFragment : Fragment() {
 
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.FloatBtn.setOnClickListener {
@@ -61,8 +63,8 @@ class HomeFragment : Fragment() {
 
             val news = bundle.getSerializable("news") as News
             adapter.addItem(news)
-            Log.e("home", "text ${news.title}${news.createdAt}")
-            Toast.makeText(requireContext(), news.title, Toast.LENGTH_SHORT).show()
+            Log.e("home", "text ${news.title }${news.createdAt}")
+            Toast.makeText(requireContext(), news.title , Toast.LENGTH_SHORT).show()
 
         }
 

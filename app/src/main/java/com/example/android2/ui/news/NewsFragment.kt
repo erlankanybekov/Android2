@@ -17,7 +17,7 @@ class NewsFragment : Fragment() {
 
     private lateinit var binding: NewsFragmentBinding
     private val adapter = NewsAdapter(this::onClick)
-    lateinit var news : News
+
 
     private fun onClick(news: News, position: Int) {
 
@@ -39,31 +39,14 @@ class NewsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        getBundles()
+
+
+
         binding.SaveBtn.setOnClickListener {
-            if (news != null) {
-                save()
-            } else {
-                edit()
-            }
+            save()
         }
     }
 
-    private fun getBundles() {
-        val bundle = arguments
-        news = bundle?.getSerializable("news") as News
-    }
-
-    private fun edit() {
-        val bundle = arguments
-        val its = bundle?.getSerializable("news") as News
-        val pos = bundle.getInt("pos")
-        binding.newsED.setText(its.title)
-        val newTitle = binding.newsED.text
-        val news = News(newTitle.toString(), its.createdAt)
-        adapter.editItem(news, pos)
-        findNavController().navigateUp()
-    }
 
 
     private fun save() {
@@ -74,6 +57,7 @@ class NewsFragment : Fragment() {
         bundle.putSerializable("news", news)
         parentFragmentManager.setFragmentResult("news", bundle)
         findNavController().navigateUp()
+
 
     }
 

@@ -1,5 +1,6 @@
 package com.example.android2.ui.news
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -18,9 +19,13 @@ class NewsAdapter(private val onClick: (news: News, position: Int) -> Unit) :
         fun bind(news: News) {
             binding.newsTitle.text = news.title
             binding.textDate.text = getDate(news.createdAt, "dd MMM yyyy")
-            binding.textTime.text = getDate(news.createdAt, "hh:mm")
+            binding.textTime.text = getDate(news.createdAt, "HH:mm")
 
-
+            if (position % 2 ==0){
+                binding.root.setBackgroundColor(Color.DKGRAY)
+            }else{
+                binding.root.setBackgroundColor(Color.GRAY)
+            }
             itemView.setOnClickListener {
                 onClick(news, adapterPosition)
             }
@@ -40,6 +45,7 @@ class NewsAdapter(private val onClick: (news: News, position: Int) -> Unit) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(list[position])
+
     }
 
     override fun getItemCount(): Int {
@@ -52,20 +58,16 @@ class NewsAdapter(private val onClick: (news: News, position: Int) -> Unit) :
         notifyItemInserted(0)
     }
 
-    fun editItem(news: News, position: Int) {
-        list.add(position, news)
-        notifyItemInserted(position)
-    }
 
     fun getItem(pos: Int): News {
         return list[pos]
     }
 
     fun getDate(milliSeconds: Long, dateFormat: String): String {
-        val formatter = SimpleDateFormat(dateFormat)
+        val formater = SimpleDateFormat(dateFormat)
 
         val calendar = Calendar.getInstance();
         calendar.timeInMillis = milliSeconds;
-        return formatter.format(calendar.time);
+        return formater.format(calendar.time);
     }
 }
