@@ -9,7 +9,11 @@ import com.example.android2.models.News
 import java.text.SimpleDateFormat
 import java.util.*
 
-class NewsAdapter(private val onClick: (news: News, position: Int) -> Unit) :
+
+
+
+
+class NewsAdapter(private val onClick:(position:Int)->Unit) :
     RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
 
     private val list = arrayListOf<News>()
@@ -19,7 +23,7 @@ class NewsAdapter(private val onClick: (news: News, position: Int) -> Unit) :
         fun bind(news: News) {
             binding.newsTitle.text = news.title
             binding.textDate.text = getDate(news.createdAt, "dd MMM yyyy")
-            binding.textTime.text = getDate(news.createdAt, "HH:mm")
+            binding.textTime.text = getDate(news.createdAt, "HH:mm,")
 
             if (position % 2 ==0){
                 binding.root.setBackgroundColor(Color.DKGRAY)
@@ -27,7 +31,7 @@ class NewsAdapter(private val onClick: (news: News, position: Int) -> Unit) :
                 binding.root.setBackgroundColor(Color.GRAY)
             }
             itemView.setOnClickListener {
-                onClick(news, adapterPosition)
+                onClick(position)
             }
         }
     }
@@ -56,6 +60,10 @@ class NewsAdapter(private val onClick: (news: News, position: Int) -> Unit) :
     fun addItem(news: News) {
         list.add(0, news)
         notifyItemInserted(0)
+    }
+    fun removeItem(position: Int) {
+        list.removeAt(position)
+        notifyItemRemoved(position)
     }
 
 

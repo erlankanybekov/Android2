@@ -10,9 +10,7 @@
         android:name="com.example.android2.ui.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home">
-        <action
-            android:id="@+id/action_navigation_home_to_newsFragment"
-            app:destination="@id/newsFragment" />
+
     </fragment>
 
     <fragment
@@ -40,4 +38,9 @@
             android:name="news"
             app:argType="com.example.android2.models.News" />
     </fragment>
+    <fragment
+        android:id="@+id/boardFragment"
+        android:name="com.example.android2.ui.board.BoardFragment"
+        android:label="fragment_board"
+        tools:layout="@layout/fragment_board" />
 </navigation>

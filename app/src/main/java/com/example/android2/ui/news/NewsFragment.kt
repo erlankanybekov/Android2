@@ -16,18 +16,8 @@ import java.util.ResourceBundle.getBundle
 class NewsFragment : Fragment() {
 
     private lateinit var binding: NewsFragmentBinding
-    private val adapter = NewsAdapter(this::onClick)
+    private  var news: News? = null
 
-
-    private fun onClick(news: News, position: Int) {
-
-    }
-
-    companion object {
-        fun newInstance() = NewsFragment()
-    }
-
-    private lateinit var viewModel: NewsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,8 +30,11 @@ class NewsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+         news = arguments?.getSerializable("news") as News?
 
-
+        news?.let {
+            binding.newsED.setText(it.title)
+        }
         binding.SaveBtn.setOnClickListener {
             save()
         }
@@ -52,19 +45,16 @@ class NewsFragment : Fragment() {
     private fun save() {
         val text = binding.newsED.text.toString().trim()
         val bundle = Bundle()
-        bundle.putString("text", text)
-        val news = News(text, System.currentTimeMillis())
+
+        if (news == null) {
+            news = News(text, System.currentTimeMillis())
+
+        } else {
+            news?.title = text
+        }
+
         bundle.putSerializable("news", news)
         parentFragmentManager.setFragmentResult("news", bundle)
         findNavController().navigateUp()
-
-
     }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(NewsViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
-
 }
