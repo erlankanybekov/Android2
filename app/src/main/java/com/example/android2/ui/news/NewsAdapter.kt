@@ -71,6 +71,12 @@ class NewsAdapter(private val onClick:(position:Int)->Unit) :
         return list[pos]
     }
 
+    fun replaceItem(news: News,position: Int){
+        list.set(position,news)
+        notifyItemChanged(position)
+    }
+
+
     fun getDate(milliSeconds: Long, dateFormat: String): String {
         val formater = SimpleDateFormat(dateFormat)
 

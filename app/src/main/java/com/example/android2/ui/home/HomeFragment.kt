@@ -17,6 +17,8 @@ class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
     private lateinit var adapter: NewsAdapter
+    private var boolean : Boolean = false
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +28,7 @@ class HomeFragment : Fragment() {
             val bundle = Bundle()
             Toast.makeText(requireContext(),it.toString(),Toast.LENGTH_SHORT).show()
             bundle.putSerializable("news",news)
-            adapter.removeItem(it)
+            boolean=true
             findNavController().navigate(R.id.newsFragment,bundle)
 
         }
@@ -57,8 +59,14 @@ class HomeFragment : Fragment() {
         ) { requestKey, bundle ->
 
             val news = bundle.getSerializable("news") as News
-
-            adapter.addItem(news)
+            val position:Int? = null
+            if (boolean){
+                position?.let {
+                    adapter.replaceItem(news,it)
+                }
+            }else{
+                adapter.addItem(news)
+            }
 
             Log.e("home", "text ${news.title }${news.createdAt}")
             Toast.makeText(requireContext(), news.title , Toast.LENGTH_SHORT).show()

@@ -1,14 +1,14 @@
 package com.example.android2.ui.board
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.android2.databinding.ItemNewsRvBinding
+import androidx.viewpager2.widget.ViewPager2
+import com.bumptech.glide.Glide
+import com.example.android2.R
 import com.example.android2.databinding.PagerBoardBinding
-import com.example.android2.models.News
-import com.example.android2.ui.news.NewsAdapter
+import me.relex.circleindicator.CircleIndicator2
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -16,21 +16,30 @@ import java.util.*
 
 
 
-class BoardAdapter (private val onClickStart:()->Unit) :RecyclerView.Adapter<BoardAdapter.ViewHolder>() {
+class BoardAdapter(private val onClickStart:()->Unit,):RecyclerView.Adapter<BoardAdapter.ViewHolder>() {
+
 
     private val titles = arrayListOf("Leo Messi","Cristiano Ronaldo"," Paulo Dybala ")
-    private val pictures = arrayListOf<Int>()
+    private val description = arrayListOf("Argentina : PSG  ","Portugal : Man Utd"," Argentina : Juventus ")
+
+    private var imageList  =  mutableListOf(R.drawable.messi,R.drawable.cristiano,R.drawable.dybala)
+
 
 
      inner class ViewHolder(private  var binding: PagerBoardBinding):RecyclerView.ViewHolder(binding.root) {
          fun bind(position: Int) {
              binding.textTitle.text = titles[position]
+            binding.imageView.setImageResource(imageList[position])
+             binding.textDesc.text = description[position]
+
+
 
              if (position == titles.size-1){
                  binding.btnStart.visibility = View.VISIBLE
              }else{
-                 binding.btnStart.visibility = View.VISIBLE
+                 binding.btnStart.visibility = View.INVISIBLE
              }
+
 
              binding.btnStart.setOnClickListener {
                  onClickStart()
@@ -47,10 +56,13 @@ class BoardAdapter (private val onClickStart:()->Unit) :RecyclerView.Adapter<Boa
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(position)
+
     }
 
     override fun getItemCount()=titles.size
     }
+
+
 
 
 

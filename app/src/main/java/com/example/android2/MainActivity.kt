@@ -16,8 +16,11 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -40,9 +43,33 @@ class MainActivity : AppCompatActivity() {
 
         navController.navigate(R.id.boardFragment)
 
+        navController.addOnDestinationChangedListener  { navController: NavController, navDestination: NavDestination, bundle: Bundle? ->
 
+            val fragments = arrayListOf(R.id.navigation_home,R.id.navigation_dashboard,R.id.navigation_notifications,R.id.navigation_profile)
+            if (fragments.contains(navDestination.id)){
+                binding.navView.visibility = View.VISIBLE
+            }else{
+                binding.navView.visibility = View.GONE
+            }
+
+            if (navDestination.id == R.id.boardFragment){
+                supportActionBar?.hide()
+            }else{
+                supportActionBar?.show()
+            }
+
+        }
 
 
     }
+
+
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+
+    }
 }
+
+
 
