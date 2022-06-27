@@ -25,6 +25,7 @@ class BoardAdapter(private val onClickStart:()->Unit,):RecyclerView.Adapter<Boar
              binding.textDesc.text = description[position]
 
 
+
              if (position == titles.size-1){
                  binding.btnStart.visibility = View.VISIBLE
              }else{

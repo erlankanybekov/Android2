@@ -30,8 +30,10 @@ class BoardFragment : Fragment() {
 
         val adapter =  BoardAdapter{
             findNavController().navigateUp()
+
         }
         binding.viewPager.adapter=adapter
+
 
         binding.fakeBtnSwipe.setOnClickListener {
                 findNavController().navigateUp()
