@@ -16,12 +16,6 @@ class BoardFragment : Fragment() {
     private lateinit var binding: FragmentBoardBinding
 
 
-    private val titles = arrayListOf("Leo Messi","Cristiano Ronaldo"," Paulo Dybala ")
-    private val description = arrayListOf("Argentina : PSG  ","Portugal : Man Utd"," Argentina : Juventus ")
-
-    private var imageList  =  mutableListOf(R.drawable.messi, R.drawable.cristiano, R.drawable.dybala)
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
