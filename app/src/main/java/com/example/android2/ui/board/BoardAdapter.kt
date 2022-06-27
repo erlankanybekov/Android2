@@ -14,7 +14,7 @@ class BoardAdapter(private val onClickStart:()->Unit,):RecyclerView.Adapter<Boar
     private val titles = arrayListOf("Leo Messi","Cristiano Ronaldo"," Paulo Dybala ")
     private val description = arrayListOf("Argentina : PSG  ","Portugal : Man Utd"," Argentina : Juventus ")
 
-    private var imageList  =  mutableListOf(R.drawable.messi,R.drawable.cristiano,R.drawable.dybala)
+    private var imageList  =  arrayListOf(R.drawable.messi,R.drawable.cristiano,R.drawable.dybala)
 
 
 
