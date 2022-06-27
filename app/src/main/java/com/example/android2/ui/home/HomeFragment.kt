@@ -28,8 +28,9 @@ class HomeFragment : Fragment() {
             val bundle = Bundle()
             Toast.makeText(requireContext(),it.toString(),Toast.LENGTH_SHORT).show()
             bundle.putSerializable("news",news)
-            ischanged=true
+            ischanged = true
             findNavController().navigate(R.id.newsFragment,bundle)
+
 
         }
 
@@ -50,6 +51,8 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
         binding.FloatBtn.setOnClickListener {
             findNavController().navigate(R.id.newsFragment)
         }

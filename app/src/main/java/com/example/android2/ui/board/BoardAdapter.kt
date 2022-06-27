@@ -4,16 +4,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager2.widget.ViewPager2
-import com.bumptech.glide.Glide
 import com.example.android2.R
 import com.example.android2.databinding.PagerBoardBinding
-import me.relex.circleindicator.CircleIndicator2
-import java.text.SimpleDateFormat
-import java.util.*
-
-
-
 
 
 class BoardAdapter(private val onClickStart:()->Unit,):RecyclerView.Adapter<BoardAdapter.ViewHolder>() {
@@ -31,7 +23,6 @@ class BoardAdapter(private val onClickStart:()->Unit,):RecyclerView.Adapter<Boar
              binding.textTitle.text = titles[position]
             binding.imageView.setImageResource(imageList[position])
              binding.textDesc.text = description[position]
-
 
 
              if (position == titles.size-1){
@@ -60,7 +51,11 @@ class BoardAdapter(private val onClickStart:()->Unit,):RecyclerView.Adapter<Boar
     }
 
     override fun getItemCount()=titles.size
-    }
+    fun getItemId(it: View?) {
+}
+
+
+}
 
 
 

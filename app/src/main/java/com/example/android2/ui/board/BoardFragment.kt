@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.navigation.fragment.findNavController
-import androidx.viewpager2.widget.ViewPager2
 import com.example.android2.R
 import com.example.android2.databinding.FragmentBoardBinding
 import me.relex.circleindicator.CircleIndicator2
@@ -16,9 +15,11 @@ import me.relex.circleindicator.CircleIndicator2
 class BoardFragment : Fragment() {
     private lateinit var binding: FragmentBoardBinding
 
-    private var images:List<Int>?=null
-    lateinit var boardAdapter: BoardAdapter
-    lateinit var indicator2: CircleIndicator2
+
+    private val titles = arrayListOf("Leo Messi","Cristiano Ronaldo"," Paulo Dybala ")
+    private val description = arrayListOf("Argentina : PSG  ","Portugal : Man Utd"," Argentina : Juventus ")
+
+    private var imageList  =  mutableListOf(R.drawable.messi, R.drawable.cristiano, R.drawable.dybala)
 
 
     override fun onCreateView(
@@ -34,17 +35,16 @@ class BoardFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val adapter =  BoardAdapter{
-
             findNavController().navigateUp()
         }
         binding.viewPager.adapter=adapter
+        binding.viewPager.adapter = adapter.apply {
 
-        binding.viewPager.apply {
-            beginFakeDrag()
-            fakeDragBy(-10f)
-            endFakeDrag()
         }
 
+        binding.fakeBtnSwipe.setOnClickListener {
+                findNavController().navigateUp()
+        }
 
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true){
             override fun handleOnBackPressed() {
@@ -57,3 +57,6 @@ class BoardFragment : Fragment() {
 
 
 }
+
+
+
