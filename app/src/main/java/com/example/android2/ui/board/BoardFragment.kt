@@ -38,9 +38,6 @@ class BoardFragment : Fragment() {
             findNavController().navigateUp()
         }
         binding.viewPager.adapter=adapter
-        binding.viewPager.adapter = adapter.apply {
-
-        }
 
         binding.fakeBtnSwipe.setOnClickListener {
                 findNavController().navigateUp()
