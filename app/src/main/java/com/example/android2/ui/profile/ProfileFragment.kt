@@ -33,6 +33,7 @@ class ProfileFragment : Fragment() {
         binding.editProfile.setText(Prefs.isEditText())
 
 
+
         binding.profileBtn.setOnClickListener {
 
             saveData()
