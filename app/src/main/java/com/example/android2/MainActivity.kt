@@ -41,7 +41,9 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        navController.navigate(R.id.boardFragment)
+        if (!Prefs(this).isShown()){
+            navController.navigate(R.id.boardFragment)
+        }
 
         navController.addOnDestinationChangedListener  { navController: NavController, navDestination: NavDestination, bundle: Bundle? ->
 
@@ -62,8 +64,6 @@ class MainActivity : AppCompatActivity() {
 
 
     }
-
-
 
     override fun onBackPressed() {
         super.onBackPressed()

@@ -25,7 +25,7 @@ class NewsAdapter(private val onClick:(position:Int)->Unit) :
             binding.textDate.text = getDate(news.createdAt, "dd MMM yyyy")
             binding.textTime.text = getDate(news.createdAt, "HH:mm,")
 
-            if (position % 2 ==0){
+            if (adapterPosition % 2 ==0){
                 binding.root.setBackgroundColor(Color.DKGRAY)
             }else{
                 binding.root.setBackgroundColor(Color.GRAY)

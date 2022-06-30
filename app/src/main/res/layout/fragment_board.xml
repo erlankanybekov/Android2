@@ -23,14 +23,24 @@
         android:textSize="14sp"
         tools:ignore="TouchTargetSizeCheck" />
 
-    <me.relex.circleindicator.CircleIndicator2
+    <com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator
+        android:id="@+id/spring_dots_indicator"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="50dp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:id="@+id/circleIndicator"
-        android:layout_marginTop="30dp"
-        android:layout_margin="20dp"
-        android:layout_width="match_parent"
-        android:backgroundTint="@color/purple"
-        android:layout_height="48dp"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:dampingRatio="0.5"
+        app:dotsCornerRadius="2dp"
+        app:dotsSize="16dp"
+        app:dotsSpacing="6dp"
+        app:dotsStrokeWidth="2dp"
+        app:stiffness="300"
+        />
+
+
+
 
 
 
