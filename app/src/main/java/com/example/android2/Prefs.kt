@@ -14,6 +14,9 @@ class Prefs(context: Context) {
     fun saveEditText(name: String) {
         preferences.edit().putString("text", name).apply()
     }
+    fun isEditText(): String? {
+        return preferences.getString("text", "")
+    }
 
 
 

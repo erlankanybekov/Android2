@@ -29,7 +29,9 @@ class ProfileFragment : Fragment() {
         binding.imgProfile.setOnClickListener {
             getContent.launch("image/*")
         }
-        Prefs(requireContext())
+        Prefs = Prefs(requireContext())
+        binding.editProfile.setText(Prefs.isEditText())
+
 
         binding.profileBtn.setOnClickListener {
 
@@ -43,6 +45,8 @@ class ProfileFragment : Fragment() {
     private fun saveData() {
         Prefs = Prefs(requireContext())
         Prefs.saveEditText(binding.editProfile.text.toString())
+
+
 
     }
 
