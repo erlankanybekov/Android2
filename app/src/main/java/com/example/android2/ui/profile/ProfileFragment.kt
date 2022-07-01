@@ -32,23 +32,26 @@ class ProfileFragment : Fragment() {
         Prefs = Prefs(requireContext())
         binding.editProfile.setText(Prefs.isEditText())
 
-
+        binding.profileBtn.visibility = View.GONE
 
         binding.profileBtn.setOnClickListener {
 
-            saveData()
-
+           /* saveData()
+*/
         }
 
 
     }
 
     private fun saveData() {
+
+
+    }
+
+    override fun onPause() {
         Prefs = Prefs(requireContext())
         Prefs.saveEditText(binding.editProfile.text.toString())
-
-
-
+        super.onPause()
     }
 
 
