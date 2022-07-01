@@ -60,7 +60,15 @@ class NewsAdapter(private val onClick:(position:Int)->Unit) :
     fun addItem(news: News) {
         list.add(0, news)
         notifyItemInserted(0)
+
+
     }
+
+    fun addItems(list: List<News>) {
+        this.list.addAll(list)
+        notifyDataSetChanged()
+    }
+
     fun removeItem(position: Int) {
         list.removeAt(position)
         notifyItemRemoved(position)
@@ -84,4 +92,6 @@ class NewsAdapter(private val onClick:(position:Int)->Unit) :
         calendar.timeInMillis = milliSeconds;
         return formater.format(calendar.time);
     }
+
+
 }

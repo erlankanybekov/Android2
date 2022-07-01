@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import com.example.android2.App
 import com.example.android2.databinding.NewsFragmentBinding
 import com.example.android2.models.News
 import java.text.SimpleDateFormat
@@ -47,7 +48,8 @@ class NewsFragment : Fragment() {
         val bundle = Bundle()
 
         if (news == null) {
-            news = News(text, System.currentTimeMillis())
+            news = News(0,text, System.currentTimeMillis())
+            App.database.newsDao().insert(news!!)
 
         } else {
             news?.title = text

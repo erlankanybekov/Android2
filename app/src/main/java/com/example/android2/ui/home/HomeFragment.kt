@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.android2.App
 import com.example.android2.R
 import com.example.android2.databinding.FragmentHomeBinding
 import com.example.android2.models.News
@@ -30,9 +31,10 @@ class HomeFragment : Fragment() {
             bundle.putSerializable("news",news)
             ischanged = true
             findNavController().navigate(R.id.newsFragment,bundle)
-
-
         }
+
+        val list = App.database.newsDao().getAll()
+        adapter.addItems(list)
 
     }
 
