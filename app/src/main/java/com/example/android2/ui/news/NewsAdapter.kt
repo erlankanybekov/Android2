@@ -60,8 +60,6 @@ class NewsAdapter(private val onClick:(position:Int)->Unit) :
     fun addItem(news: News) {
         list.add(0, news)
         notifyItemInserted(0)
-
-
     }
 
     fun addItems(list: List<News>) {
