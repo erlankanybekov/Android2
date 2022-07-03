@@ -31,6 +31,7 @@ class NewsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
          news = arguments?.getSerializable("news") as News?
 
         news?.let {
@@ -39,6 +40,7 @@ class NewsFragment : Fragment() {
         binding.SaveBtn.setOnClickListener {
             save()
         }
+
     }
 
 
@@ -50,6 +52,7 @@ class NewsFragment : Fragment() {
         if (news == null) {
             news = News(0,text, System.currentTimeMillis())
             App.database.newsDao().insert(news!!)
+
 
         } else {
             news?.title = text

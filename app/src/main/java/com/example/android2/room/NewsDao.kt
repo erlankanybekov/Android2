@@ -21,4 +21,13 @@ interface NewsDao {
     @Delete
     fun delete(news: News)
 
+    @Query("SELECT * FROM news ORDER BY createdAt DESC")
+    fun sortAll(): List<News>
+
+    @Query("SELECT * FROM news WHERE title LIKE '%' || :search || '%'")
+    fun getSearch(search: String?): List<News>
+
+    @Query("SELECT * FROM news ORDER BY title ASC")
+    fun sort(): List<News>
+
 }
