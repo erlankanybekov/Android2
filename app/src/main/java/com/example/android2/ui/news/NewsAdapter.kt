@@ -130,9 +130,6 @@ class NewsAdapter(private val onClick:(position:Int)->Unit) :
         return formater.format(calendar.time);
     }
 
-    fun onItemLongClick(function: () -> Unit) {
-
-    }
 
 }
 
