@@ -1,5 +1,6 @@
 package com.example.android2.ui.home
 
+import android.app.AlertDialog
 import android.os.Build
 import android.os.Bundle
 import android.text.TextWatcher
@@ -19,6 +20,11 @@ import com.example.android2.ui.news.NewsAdapter
 import android.text.Editable
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.FragmentResultListener
+
+import android.content.DialogInterface
+
+
+
 
 
 class HomeFragment : Fragment() {
@@ -45,8 +51,9 @@ class HomeFragment : Fragment() {
 
 
         }
-        val list = App.database.newsDao().getAll()
-        adapter.addItems(list!!)
+    //  val list = App.database.newsDao().getAll()
+ //   adapter.addItems(list!!)
+
 
 
 
@@ -69,9 +76,19 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter.onItemLongClick {
-            Toast.makeText(requireContext(),"ntcn",Toast.LENGTH_SHORT).show()
+        adapter.onItemLongClick = {
+            AlertDialog.Builder(view?.context).setTitle("Удаление")
+                .setMessage("Вы точно хотите удалить?")
+                .setNegativeButton("нет", null)
+                .setPositiveButton("да") { dialog, which ->
+                    val news = adapter.getItem(it)
+                    adapter.removeItem(it)
+                    App.database.newsDao().delete(news)
+                    adapter.notifyDataSetChanged()
+                    Toast.makeText(view?.context, "успешно удалено", Toast.LENGTH_LONG).show()
+                }.show()
         }
+
 
         binding.FloatBtn.setOnClickListener {
             findNavController().navigate(R.id.newsFragment)
@@ -88,7 +105,7 @@ class HomeFragment : Fragment() {
                     adapter.replaceItem(news,it)
                 }
             }else{
-                adapter.addItem(news)
+             //   adapter.addItem(news)
 
             }
 

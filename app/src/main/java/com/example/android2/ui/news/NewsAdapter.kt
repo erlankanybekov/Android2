@@ -15,7 +15,6 @@ import kotlin.collections.ArrayList
 import java.util.Collections
 import android.view.View
 import android.view.View.OnLongClickListener
-import com.example.android2.interfaces.OnClickListener
 
 
 class NewsAdapter(private val onClick:(position:Int)->Unit) :
@@ -23,7 +22,7 @@ class NewsAdapter(private val onClick:(position:Int)->Unit) :
 
     private var list = arrayListOf<News>()
 
-    var onItemLongClick:((News)->Unit)?=null
+    var onItemLongClick:((Int)->Unit)?=null
 
 
 
@@ -32,7 +31,7 @@ class NewsAdapter(private val onClick:(position:Int)->Unit) :
 
         init {
             itemView.setOnLongClickListener {
-                onItemLongClick?.invoke(list[position])
+                onItemLongClick?.invoke(position)
                 true
             }
 
