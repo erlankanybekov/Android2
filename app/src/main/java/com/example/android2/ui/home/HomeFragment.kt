@@ -77,7 +77,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         adapter.onItemLongClick = {
-           AlertDialog.Builder(view?.context)
+           AlertDialog.Builder(view?.context).setTitle("Внимание!")
                .setMessage("Вы точно хотите удалить?")
                .setNegativeButton("нет",null)
                .setPositiveButton("да"){dialog, which->
