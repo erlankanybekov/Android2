@@ -31,14 +31,19 @@ class HomeFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        adapter = NewsAdapter{
 
+
+
+        adapter = NewsAdapter{
             val news = adapter.getItem(it)
+
             val bundle = Bundle()
             Toast.makeText(requireContext(),it.toString(),Toast.LENGTH_SHORT).show()
             bundle.putSerializable("news",news)
             ischanged = true
             findNavController().navigate(R.id.newsFragment,bundle)
+
+
         }
         val list = App.database.newsDao().getAll()
         adapter.addItems(list!!)
@@ -64,6 +69,10 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        adapter.onItemLongClick {
+            Toast.makeText(requireContext(),"ntcn",Toast.LENGTH_SHORT).show()
+        }
+
         binding.FloatBtn.setOnClickListener {
             findNavController().navigate(R.id.newsFragment)
         }
@@ -77,10 +86,10 @@ class HomeFragment : Fragment() {
             if (ischanged){
                 position?.let {
                     adapter.replaceItem(news,it)
-
                 }
             }else{
                 adapter.addItem(news)
+
             }
 
             Log.e("home", "text ${news.title }${news.createdAt}")
@@ -112,7 +121,6 @@ class HomeFragment : Fragment() {
         binding.recyclerView.adapter = adapter
         list = App.database.newsDao().sortAll() as ArrayList<News>
         adapter.addList(list)
-
 
 
 

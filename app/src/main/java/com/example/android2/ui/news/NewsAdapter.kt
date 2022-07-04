@@ -23,12 +23,22 @@ class NewsAdapter(private val onClick:(position:Int)->Unit) :
 
     private var list = arrayListOf<News>()
 
-    private var onClickListener: OnClickListener? = null
+    var onItemLongClick:((News)->Unit)?=null
 
 
 
     inner class ViewHolder(private var binding: ItemNewsRvBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
+        init {
+            itemView.setOnLongClickListener {
+                onItemLongClick?.invoke(list[position])
+                true
+            }
+
+        }
+
+
         fun bind(news: News) {
             binding.newsTitle.text = news.title
             binding.textDate.text = getDate(news.createdAt, "dd MMM yyyy")
@@ -42,6 +52,7 @@ class NewsAdapter(private val onClick:(position:Int)->Unit) :
             itemView.setOnClickListener {
                 onClick(position)
             }
+
 
 
         }
@@ -117,6 +128,10 @@ class NewsAdapter(private val onClick:(position:Int)->Unit) :
         val calendar = Calendar.getInstance();
         calendar.timeInMillis = milliSeconds;
         return formater.format(calendar.time);
+    }
+
+    fun onItemLongClick(function: () -> Unit) {
+
     }
 
 }

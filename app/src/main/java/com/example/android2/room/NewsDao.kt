@@ -30,4 +30,5 @@ interface NewsDao {
     @Query("SELECT * FROM news ORDER BY title ASC")
     fun sort(): List<News>
 
+
 }
