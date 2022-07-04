@@ -103,6 +103,7 @@ class HomeFragment : Fragment() {
             if (ischanged){
                 position?.let {
                     adapter.replaceItem(news,it)
+
                 }
             }else{
              //   adapter.addItem(news)
