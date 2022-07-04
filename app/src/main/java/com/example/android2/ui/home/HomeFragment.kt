@@ -51,8 +51,8 @@ class HomeFragment : Fragment() {
 
 
         }
-    //  val list = App.database.newsDao().getAll()
- //   adapter.addItems(list!!)
+      val list = App.database.newsDao().getAll()
+      adapter.addItems(list!!)
 
 
 
@@ -77,16 +77,16 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         adapter.onItemLongClick = {
-            AlertDialog.Builder(view?.context).setTitle("Удаление")
-                .setMessage("Вы точно хотите удалить?")
-                .setNegativeButton("нет", null)
-                .setPositiveButton("да") { dialog, which ->
-                    val news = adapter.getItem(it)
-                    adapter.removeItem(it)
-                    App.database.newsDao().delete(news)
-                    adapter.notifyDataSetChanged()
-                    Toast.makeText(view?.context, "успешно удалено", Toast.LENGTH_LONG).show()
-                }.show()
+           AlertDialog.Builder(view?.context)
+               .setMessage("Вы точно хотите удалить?")
+               .setNegativeButton("нет",null)
+               .setPositiveButton("да"){dialog, which->
+                   val news = adapter.getItem(it)
+                   adapter.removeItem(it)
+                   App.database.newsDao().delete(news)
+                   adapter.notifyDataSetChanged()
+                   Toast.makeText(requireContext(),"успешно удалено",Toast.LENGTH_SHORT).show()
+               }.show()
         }
 
 
