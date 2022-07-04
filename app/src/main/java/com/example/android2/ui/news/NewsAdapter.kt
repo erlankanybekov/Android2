@@ -95,7 +95,6 @@ class NewsAdapter(private val onClick:(position:Int)->Unit) :
         notifyItemRemoved(position)
     }
 
-    @RequiresApi(Build.VERSION_CODES.N)
     fun addList(list: List<News>) {
         this.list = list as ArrayList<News>
         Collections.reverse(this.list)
