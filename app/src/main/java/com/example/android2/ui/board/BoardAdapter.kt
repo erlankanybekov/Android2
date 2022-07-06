@@ -11,9 +11,14 @@ import com.example.android2.databinding.PagerBoardBinding
 class BoardAdapter(private val onClickStart:()->Unit,):RecyclerView.Adapter<BoardAdapter.ViewHolder>() {
 
 
-    private val titles = arrayListOf("Leo Messi","Cristiano Ronaldo","Paulo Dybala")
-    private val description = arrayListOf("Argentina : PSG","Portugal : Man Utd","Argentina : Juventus")
-    private var imageList  =  arrayListOf(R.drawable.messi,R.drawable.cristiano,R.drawable.dybala)
+    private val titles = arrayListOf("Leo Messi","Cristiano Ronaldo","Paulo Dybala","Neymar")
+    private val description = arrayListOf("Argentina : PSG","Portugal : Man Utd","Argentina : Juventus","Brazil : PSG")
+    private var imageList  =  arrayListOf(
+        R.drawable.messi,
+        R.drawable.cristiano,
+        R.drawable.dybala,
+        R.drawable.neymar
+        )
 
 
 

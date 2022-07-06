@@ -55,7 +55,7 @@ class BoardFragment : Fragment() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
 
-                if (position == 2) {
+                if (position == 3) {
                     binding.fakeBtnSwipe.visibility = View.GONE
                 }
                 else {
