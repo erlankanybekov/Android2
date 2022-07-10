@@ -11,11 +11,28 @@ class Prefs(context: Context) {
         return preferences.getBoolean("isShown",false)
     }
 
-    fun saveEditText(name: String) {
-        preferences.edit().putString("text", name).apply()
+    fun saveImageView(image: String?) {
+        preferences.edit().putString("image", image).apply()
     }
-    fun isEditText(): String? {
-        return preferences.getString("text", "")
+
+    fun isImageView(): String? {
+        return preferences.getString("image", "")
+    }
+
+    fun saveImageView1(image: String?) {
+        preferences.edit().putString("image1", image).apply()
+    }
+
+    fun isImageView1(): String? {
+        return preferences.getString("image1", "")
+    }
+
+    fun saveImageView2(image: String?) {
+        preferences.edit().putString("image2", image).apply()
+    }
+
+    fun isImageView2(): String? {
+        return preferences.getString("image2", "")
     }
 
 

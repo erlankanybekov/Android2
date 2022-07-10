@@ -2,6 +2,13 @@
 <resources>
     <array name="preloaded_fonts" translatable="false">
         <item>@font/</item>
+        <item>@font/abril_fatface</item>
+        <item>@font/aclonica</item>
+        <item>@font/cormorant_sc_bold</item>
         <item>@font/montserrat_subrayada</item>
+        <item>@font/rowdies</item>
+        <item>@font/rowdies_bold</item>
+        <item>@font/rowdies_light</item>
+        <item>@font/vast_shadow</item>
     </array>
 </resources>

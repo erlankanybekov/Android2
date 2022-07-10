@@ -11,21 +11,23 @@ import com.example.android2.databinding.PagerBoardBinding
 class BoardAdapter(private val onClickStart:()->Unit,):RecyclerView.Adapter<BoardAdapter.ViewHolder>() {
 
 
-    private val titles = arrayListOf("Leo Messi","Cristiano Ronaldo","Paulo Dybala","Neymar")
-    private val description = arrayListOf("Argentina : PSG","Portugal : Man Utd","Argentina : Juventus","Brazil : PSG")
-    private var imageList  =  arrayListOf(
-        R.drawable.messi,
-        R.drawable.cristiano,
+    private val titles = arrayListOf("News!","Наука!",
+        "Бизнес!",
+        "Data Science!")
+    private val description = arrayListOf("Свежие новости каждый день!","","","")
+   // private var imageList  =  arrayListOf(
+    //    R.drawable.messi,
+    /*    R.drawable.cristiano,
         R.drawable.dybala,
         R.drawable.neymar
-        )
+    */  //  )
 
 
 
      inner class ViewHolder(private  var binding: PagerBoardBinding):RecyclerView.ViewHolder(binding.root) {
          fun bind(position: Int) {
              binding.textTitle.text = titles[position]
-            binding.imageView.setImageResource(imageList[position])
+        //    binding.imageView.setImageResource(imageList[position])
              binding.textDesc.text = description[position]
 
 
@@ -34,6 +36,20 @@ class BoardAdapter(private val onClickStart:()->Unit,):RecyclerView.Adapter<Boar
                  binding.btnStart.visibility = View.VISIBLE
              }else{
                  binding.btnStart.visibility = View.INVISIBLE
+             }
+
+
+             if (position == 0){
+                 binding.imageView.setAnimation(R.raw.presentation)
+             }
+             if (position == 1){
+                 binding.imageView.setAnimation(R.raw.differ)
+             }
+             if (position == 2){
+                 binding.imageView.setAnimation(R.raw.office)
+             }
+             if (position == 3){
+                 binding.imageView.setAnimation(R.raw.business)
              }
 
 

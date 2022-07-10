@@ -1,7 +1,9 @@
 package com.example.android2
 
+import android.os.Build
 import android.os.Bundle
 import android.view.View
+import android.view.WindowManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
@@ -11,6 +13,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.android2.databinding.ActivityMainBinding
+import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,8 +22,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -41,6 +42,10 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
+        if (FirebaseAuth.getInstance().currentUser == null){
+            navController.navigate(R.id.loginFragment)
+        }
+
         if (!Prefs(this).isShown()){
             navController.navigate(R.id.boardFragment)
         }
@@ -57,7 +62,7 @@ class MainActivity : AppCompatActivity() {
             if (navDestination.id == R.id.boardFragment){
                 supportActionBar?.hide()
             }else{
-                supportActionBar?.show()
+                supportActionBar?.hide()
             }
 
         }

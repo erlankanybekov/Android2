@@ -118,7 +118,7 @@ class HomeFragment : Fragment() {
 
 
 
-        binding.searchViewRecycle.addTextChangedListener(object : TextWatcher {
+        binding.search.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
             }
@@ -138,8 +138,6 @@ class HomeFragment : Fragment() {
         binding.recyclerView.adapter = adapter
         list = App.database.newsDao().sortAll() as ArrayList<News>
         adapter.addList(list)
-
-
 
 
 
