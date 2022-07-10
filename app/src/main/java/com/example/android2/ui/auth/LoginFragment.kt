@@ -111,7 +111,7 @@ class LoginFragment : Fragment() {
             else{
                 requestSMS()
             }
-            countdownTimer(59000)
+            countdownTimer(59_000/1000)
         }
 
         binding.resendcode.setOnClickListener{
