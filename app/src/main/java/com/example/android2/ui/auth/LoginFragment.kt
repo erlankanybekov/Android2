@@ -111,7 +111,7 @@ class LoginFragment : Fragment() {
             else{
                 requestSMS()
             }
-            countdownTimer(59_000/1000)
+            countdownTimer(59_000)
         }
 
         binding.resendcode.setOnClickListener{
@@ -140,7 +140,7 @@ class LoginFragment : Fragment() {
         timer?.cancel()
         timer = object : CountDownTimer(timeMillis,1){
             override fun onTick(millisUntilFinished: Long) {
-               binding.timer.text = "00:$millisUntilFinished"
+               binding.timer.text = "00:${millisUntilFinished/1000}"
             }
 
             override fun onFinish() {
