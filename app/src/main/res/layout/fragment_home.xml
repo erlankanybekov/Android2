@@ -13,8 +13,7 @@
 
         android:layout_height="wrap_content"
         android:layout_margin="32dp"
-        android:background="@color/teal_200"
-        android:fontFamily="@font/cormorant_sc_bold"
+        android:background="@drawable/grad"
         android:hint="search..."
         android:minHeight="48dp"
         android:padding="12dp"
@@ -34,7 +33,7 @@
         android:id="@+id/FloatBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="14dp"
+        android:layout_margin="18dp"
         android:src="@drawable/ic_baseline_add_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

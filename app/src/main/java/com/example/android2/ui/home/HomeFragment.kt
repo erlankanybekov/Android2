@@ -1,7 +1,6 @@
 package com.example.android2.ui.home
 
 import android.app.AlertDialog
-import android.os.Build
 import android.os.Bundle
 import android.text.TextWatcher
 import android.util.Log
@@ -18,13 +17,10 @@ import com.example.android2.models.News
 import com.example.android2.ui.news.NewsAdapter
 
 import android.text.Editable
-import androidx.annotation.RequiresApi
-import androidx.fragment.app.FragmentResultListener
 
 import android.content.DialogInterface
-
-
-
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 
 class HomeFragment : Fragment() {
@@ -55,6 +51,18 @@ class HomeFragment : Fragment() {
       adapter.addItems(list!!)
 
 
+        adapter.onItemLongClick = {
+            AlertDialog.Builder(view?.context).setTitle("Внимание!")
+                .setMessage("Вы точно хотите удалить данный элемент?")
+                .setNegativeButton("нет",null)
+                .setPositiveButton("да"){dialog, which->
+                    val news = adapter.getItem(it)
+                    adapter.removeItem(it)
+                    App.database.newsDao().delete(news)
+                    adapter.notifyDataSetChanged()
+                    Toast.makeText(requireContext(),"успешно удалено",Toast.LENGTH_SHORT).show()
+                }.show()
+        }
 
 
     }
@@ -74,19 +82,6 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        adapter.onItemLongClick = {
-           AlertDialog.Builder(view?.context).setTitle("Внимание!")
-               .setMessage("Вы точно хотите удалить?")
-               .setNegativeButton("нет",null)
-               .setPositiveButton("да"){dialog, which->
-                   val news = adapter.getItem(it)
-                   adapter.removeItem(it)
-                   App.database.newsDao().delete(news)
-                   adapter.notifyDataSetChanged()
-                   Toast.makeText(requireContext(),"успешно удалено",Toast.LENGTH_SHORT).show()
-               }.show()
-        }
 
 
         binding.FloatBtn.setOnClickListener {
@@ -142,6 +137,7 @@ class HomeFragment : Fragment() {
 
 
     }
+
 
 
 

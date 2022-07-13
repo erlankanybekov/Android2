@@ -10,4 +10,6 @@ class News(
     var title: String,
     val createdAt: Long
 
-):Serializable
+):Serializable{
+    constructor():this(0,"",0L)
+}

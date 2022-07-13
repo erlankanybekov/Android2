@@ -1,10 +1,8 @@
 package com.example.android2.ui.news
 
 import android.graphics.Color
-import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android2.databinding.ItemNewsRvBinding
 
@@ -13,8 +11,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 import java.util.Collections
-import android.view.View
-import android.view.View.OnLongClickListener
+import com.google.firebase.firestore.QuerySnapshot
 
 
 class NewsAdapter(private val onClick:(position:Int)->Unit) :
@@ -86,9 +83,16 @@ class NewsAdapter(private val onClick:(position:Int)->Unit) :
     }
 
     fun addItems(list: List<News>) {
+        this.list.clear()
         this.list.addAll(list)
         notifyDataSetChanged()
     }
+
+    fun removeItems(list: List<News>) {
+        this.list.removeAll(list)
+        notifyDataSetChanged()
+    }
+
 
     fun removeItem(position: Int) {
         list.removeAt(position)
@@ -101,10 +105,6 @@ class NewsAdapter(private val onClick:(position:Int)->Unit) :
         notifyDataSetChanged()
     }
 
-    fun updateItem(news: News?, position: Int) {
-        list[position] = news!!
-        notifyItemChanged(position)
-    }
 
 
 
